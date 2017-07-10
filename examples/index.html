@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>compressionMan test page</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/exif-js/2.2.1/exif.js"></script>
+    <script src="/dist/compressionman.js"></script>
+</head>
+<body>
+<button id="selector" >点击选择压缩图片</button>
+<img id="picture" >
+<img id="picture2" >
+<script>
+
+var compressionMan = $.compressionMan({
+    dataURL: function(img) {
+        var data = img.data;
+        console.log(data);
+        $("#picture").attr("src", data);
+    },
+    dataBlob: function(img) {
+        var data = img.data;
+        console.log(data);
+    },
+});
+
+$("#selector").click(function() {
+    compressionMan.select();
+});
+
+
+</script>
+</body>
+</html>
