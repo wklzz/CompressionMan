@@ -29,6 +29,7 @@
         var imageContainer = new Image();
         var fileReader = new FileReader();
         var canvasDrawer = document.createElement("canvas");
+        var $input;
 
         me.select = function() {
             if(me.lock) {
@@ -36,11 +37,11 @@
             }
             me.lock = true;
             if(typeof me.options.before == 'function') {
-                if(!me.options.before()) {
+                if(me.options.before() == false) {
                 return;   
                 }
             }
-            var $input = $("<input>");
+            $input = $("<input>");
             $input.hide();
             $input.attr("type", "file");
             $input.attr("accept", "image/gif,image/jpeg,image/jpg,image/png,image/svg");
@@ -101,7 +102,7 @@
                     picture.name = fileName; 
                     picture.data = canvasDrawer.toDataURL("image/jpeg", me.options.quality);
                     if(typeof me.options.complete == 'function') {
-                        if(!me.options.complete()) {
+                        if(me.options.complete() == false) {
                             return;   
                         }
                     }
@@ -134,22 +135,22 @@
             switch(me.options.type) {
                 case 'width' :
                     if(width > me.options.max) {
-                        height = height / width * me.options.length;
-                        width = me.options.length;
+                        height = height / width * me.options.max;
+                        width = me.options.max;
                     }
                     break;
                 case 'height' :
                     if(height > me.options.max) {
-                        width = width / height * me.options.length;
-                        height = me.options.length;
+                        width = width / height * me.options.max;
+                        height = me.options.max;
                     }
                     break;
                 default :
                     var maxSide = Math.max(width, height);
                     if (maxSide > me.options.max) {
                         var minSide = Math.min(width, height);
-                        minSide = minSide / maxSide * me.options.length;
-                        maxSide = me.options.length;
+                        minSide = minSide / maxSide * me.options.max;
+                        maxSide = me.options.max;
                         if (width > height) {
                             width = maxSide;
                             height = minSide;

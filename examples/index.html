@@ -7,7 +7,7 @@
     <title>compressionMan test page</title>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
     <script src="https://cdn.bootcss.com/exif-js/2.2.1/exif.js"></script>
-    <script src="/dist/compressionman.js"></script>
+    <script src="/dist/compressionman.js?5"></script>
 </head>
 <body>
 <button id="selector" >点击选择压缩图片</button>
@@ -20,10 +20,6 @@ var compressionMan = $.compressionMan({
         var data = img.data;
         console.log(data);
         $("#picture").attr("src", data);
-    },
-    dataBlob: function(img) {
-        var data = img.data;
-        console.log(data);
     },
 });
 
